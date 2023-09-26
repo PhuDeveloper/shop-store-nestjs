@@ -34,8 +34,8 @@ export class ProductEntity {
   @Column({ type: 'int', comment: 'Thời gian cập nhật' })
   productUpdated: number;
 
-  @Column({ type: 'boolean', default: false, comment: 'Xóa sản phẩm' })
-  isDeleted: boolean;
+  @Column({ type: 'int', default: 0, comment: 'Xóa sản phẩm' })
+  isDeleted: number;
 
   @ManyToOne(() => BrandEntity, (brand) => brand.product)
   @JoinColumn()

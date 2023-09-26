@@ -1,4 +1,5 @@
 import { BrandEntity } from '@/brand/brand.entity';
+import { CategoryEntity } from '@/category/category.entity';
 import { ProductEntity } from '@/product/product.entity';
 
 export interface Product {
@@ -17,6 +18,7 @@ export interface Product {
   product_type: number | null;
   is_deleted: number;
   brand: BrandEntity;
+  category: CategoryEntity;
 }
 
 export interface ProductListResponse {

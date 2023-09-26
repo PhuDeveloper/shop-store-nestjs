@@ -3,7 +3,7 @@ import { IsInt, IsNotEmpty, IsNumber } from 'class-validator';
 export interface DataUpdateBrand {
   brandName?: string;
   brandUpdated?: number;
-  isDeleted?: boolean;
+  isDeleted?: number;
   brandDescription?: string;
 }
 

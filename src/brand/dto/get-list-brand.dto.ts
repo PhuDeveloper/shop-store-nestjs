@@ -11,7 +11,7 @@ export class GetListBrandDto {
   brandName: string;
 
   @IsOptional()
-  isDeleted: boolean;
+  isDeleted: number;
 
   @IsOptional()
   page: number;

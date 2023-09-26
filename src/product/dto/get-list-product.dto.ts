@@ -8,7 +8,16 @@ export class GetListProductDto {
   productName: string;
 
   @IsOptional()
+  productStart: number;
+
+  @IsOptional()
+  productStatus: number;
+
+  @IsOptional()
   brandId: number;
+
+  @IsOptional()
+  categoryId: number;
 
   @IsOptional()
   isDeleted: boolean;

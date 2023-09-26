@@ -20,8 +20,8 @@ export class BrandEntity {
   @Column({ type: 'int', comment: 'Thời gian cập nhật' })
   brandUpdated: number;
 
-  @Column({ type: 'boolean', default: false, comment: 'Xóa thương hiệu' })
-  isDeleted: boolean;
+  @Column({ type: 'int', default: 0, comment: 'Xóa thương hiệu' })
+  isDeleted: number;
 
   @Column({ type: 'text', comment: 'Mô tả thương hiệu' })
   brandDescription?: string;

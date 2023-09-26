@@ -7,6 +7,9 @@ export class CreateProductDto {
   @IsOptional()
   brandId: number;
 
+  @IsOptional()
+  categoryId: number;
+
   @IsNotEmpty()
   productPriceOrg: number;
 
@@ -26,8 +29,7 @@ export class CreateProductDto {
   productPriceDiscount?: number;
 
   @IsNotEmpty()
-  @IsBoolean()
-  isDeleted: boolean = false;
+  isDeleted: number = 0;
 
   @IsOptional()
   productStatus?: number = 0;

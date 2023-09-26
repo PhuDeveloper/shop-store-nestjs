@@ -11,7 +11,7 @@ export class CreateCategoryDto {
   categoryUpdated?: number;
 
   @IsOptional()
-  isDeleted: boolean = false; // Mặc định là chưa xóa
+  isDeleted: number = 0; // Mặc định là chưa xóa
 
   @IsOptional()
   categoryDescription?: string;

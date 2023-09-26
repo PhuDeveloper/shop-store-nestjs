@@ -3,7 +3,7 @@ import { IsInt, IsNotEmpty, IsNumber } from 'class-validator';
 export interface DataUpdateCategory {
   categoryName?: string;
   categoryUpdated?: number;
-  isDeleted?: boolean;
+  isDeleted?: number;
   categoryDescription?: string;
 }
 

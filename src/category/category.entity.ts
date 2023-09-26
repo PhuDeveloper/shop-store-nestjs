@@ -17,8 +17,8 @@ export class CategoryEntity {
   @Column({ type: 'int', comment: 'Thời gian cập nhật' })
   categoryUpdated: number;
 
-  @Column({ type: 'boolean', default: false, comment: 'Xóa danh mục' })
-  isDeleted: boolean;
+  @Column({ type: 'int', default: 0, comment: 'Xóa danh mục' })
+  isDeleted: number;
 
   @Column({ type: 'text', comment: 'Mô tả danh mục' })
   categoryDescription?: string;

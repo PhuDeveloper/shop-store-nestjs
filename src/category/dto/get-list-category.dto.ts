@@ -8,7 +8,7 @@ export class GetListCategoryDto {
   categoryName: string;
 
   @IsOptional()
-  isDeleted: boolean;
+  isDeleted: number;
 
   @IsOptional()
   page: number;

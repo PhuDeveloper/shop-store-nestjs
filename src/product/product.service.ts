@@ -14,6 +14,7 @@ export class ProductService {
 
   async createService(queryCreate: CreateProductDto): Promise<ProductEntityResponseData> {
     const brandId = queryCreate.brandId;
+    const categoryId = queryCreate.categoryId;
     const timestamp = Math.round(Date.now() / 1000);
 
     const brand = await this.brandRepository.getByIdRepository({ brandId: brandId });
@@ -26,6 +27,9 @@ export class ProductService {
       brand: {
         id: brandId,
       },
+      category: {
+        id: categoryId,
+      },
       productCreated: timestamp,
       productUpdated: timestamp,
       isDeleted: queryCreate.isDeleted,
@@ -35,7 +39,7 @@ export class ProductService {
       productPriceDiscount: queryCreate.productPriceDiscount,
       productPriceOrg: queryCreate.productPriceOrg,
       productStart: queryCreate.productStart,
-      productStatus: queryCreate.productStatus,
+      productStatus: queryCreate.productStatus ?? 0,
       imageUrl: queryCreate.imageUrl,
       imageUrlList: queryCreate.imageUrlList,
     } as ProductEntity;

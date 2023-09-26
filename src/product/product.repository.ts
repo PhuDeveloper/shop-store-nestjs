@@ -54,13 +54,14 @@ export class ProductRepository extends Repository<ProductEntity> {
 
   async getListRepository(querySearch: GetListProductDto): Promise<ProductListResponseData> {
     try {
-      const { productId, brandId, productName, isDeleted } = querySearch;
+      const { productId, brandId, productName, isDeleted, categoryId, productStart, productStatus } = querySearch;
       const page = querySearch.page ? querySearch.page : 1;
       const limit = querySearch.limit ? querySearch.limit : 20;
 
       const skip: number = limit * page - limit;
 
       const query = this.createQueryBuilder('product')
+        .leftJoinAndSelect('product.category', 'category')
         .leftJoinAndSelect('product.brand', 'brands')
         .take(limit)
         .skip(skip);
@@ -71,6 +72,18 @@ export class ProductRepository extends Repository<ProductEntity> {
 
       if (brandId) {
         query.andWhere('brand_id = :brandId', { brandId });
+      }
+
+      if (categoryId) {
+        query.andWhere('category_id = :categoryId', { categoryId });
+      }
+
+      if (productStart) {
+        query.andWhere('product_start = :productStart', { productStart });
+      }
+
+      if (productStatus) {
+        query.andWhere('product_status = :productStatus', { productStatus });
       }
 
       if (productName) {
@@ -103,7 +116,9 @@ export class ProductRepository extends Repository<ProductEntity> {
   async getByIdRepository(queryGetById: GetDetailProductDto): Promise<ProductEntityResponseData> {
     try {
       const { productId } = queryGetById;
-      const query = this.createQueryBuilder('product').leftJoinAndSelect('product.brand', 'brands');
+      const query = this.createQueryBuilder('product')
+        .leftJoinAndSelect('product.brand', 'brands')
+        .leftJoinAndSelect('product.category', 'category');
 
       if (productId) {
         query.andWhere('product.id = :productId', { productId });

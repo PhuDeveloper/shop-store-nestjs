@@ -1,14 +1,17 @@
+import { BrandEntity } from '@/brand/brand.entity';
+import { CategoryEntity } from '@/category/category.entity';
 import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export interface DataUpdateProduct {
   productName?: string;
-  brandId?: number;
+  brand?: BrandEntity;
+  category?: CategoryEntity;
   productPriceOrg?: number;
   productStart?: number;
   productCreated?: number;
   productUpdated?: number;
   productPriceDiscount?: number;
-  isDeleted?: boolean;
+  isDeleted?: number;
   productDescription?: string;
   imageUrlList: string[];
   imageUrl: string;

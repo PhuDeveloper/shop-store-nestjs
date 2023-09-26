@@ -28,6 +28,7 @@ export class ProductController {
 
   @Post('/update')
   async updateController(@Body() queryUpdate: UpdateProductDto) {
+    console.log('úpd', queryUpdate);
     return await this.service.updateService(queryUpdate);
   }
 }

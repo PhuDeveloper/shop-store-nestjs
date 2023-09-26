@@ -21,8 +21,16 @@ export class UploadController {
     }),
   )
   async uploadFile(@UploadedFile() file) {
-    return {
-      url: `${this.configService.get('UPLOAD_FILE_URL')}/${file.path}`,
-    };
+    try {
+      return {
+        statusCode: 200,
+        message: 'Success',
+        payload: {
+          url: `${this.configService.get('UPLOAD_FILE_URL')}/${file.path}`,
+        },
+      };
+    } catch (error) {
+      throw error;
+    }
   }
 }
