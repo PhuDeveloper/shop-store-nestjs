@@ -54,9 +54,10 @@ export class ProductRepository extends Repository<ProductEntity> {
 
   async getListRepository(querySearch: GetListProductDto): Promise<ProductListResponseData> {
     try {
-      const { productId, brandId, productName, isDeleted, categoryId, productStart, productStatus } = querySearch;
-      const page = querySearch.page ? querySearch.page : 1;
-      const limit = querySearch.limit ? querySearch.limit : 20;
+      const { productId, brandId, productName, isDeleted, categoryId, productStart, productStatus, productCode } =
+        querySearch;
+      const page = querySearch.page ? Number(querySearch.page) : 1;
+      const limit = querySearch.limit ? Number(querySearch.limit) : 20;
 
       const skip: number = limit * page - limit;
 
@@ -88,6 +89,10 @@ export class ProductRepository extends Repository<ProductEntity> {
 
       if (productName) {
         query.andWhere('product_name = :productName', { productName });
+      }
+
+      if (productCode) {
+        query.andWhere('product_code = :productCode', { productCode });
       }
 
       if (isDeleted) {

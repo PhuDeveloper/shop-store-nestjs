@@ -8,6 +8,9 @@ export class GetListProductDto {
   productName: string;
 
   @IsOptional()
+  productCode: string;
+
+  @IsOptional()
   productStart: number;
 
   @IsOptional()

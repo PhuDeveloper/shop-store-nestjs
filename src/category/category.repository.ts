@@ -16,8 +16,8 @@ export class CategoryRepository extends Repository<CategoryEntity> {
   async getListRepository(querySearch: GetListCategoryDto): Promise<CategoryListResponseData> {
     try {
       const { categoryId, categoryName, isDeleted } = querySearch;
-      const page = querySearch.page ? querySearch.page : 1;
-      const limit = querySearch.limit ? querySearch.limit : 20;
+      const page = querySearch.page ? Number(querySearch.page) : 1;
+      const limit = querySearch.limit ? Number(querySearch.limit) : 20;
 
       const skip: number = limit * page - limit;
 

@@ -16,8 +16,8 @@ export class BrandRepository extends Repository<BrandEntity> {
   async getListRepository(querySearch: GetListBrandDto): Promise<BrandListResponseData> {
     try {
       const { brandCode, brandId, brandName, isDeleted } = querySearch;
-      const page = querySearch.page ? querySearch.page : 1;
-      const limit = querySearch.limit ? querySearch.limit : 20;
+      const page = querySearch.page ? Number(querySearch.page) : 1;
+      const limit = querySearch.limit ? Number(querySearch.limit) : 20;
 
       const skip: number = limit * page - limit;
 
