@@ -6,13 +6,20 @@ import { BrandEntity } from './brand/brand.entity';
 
 import { ProductEntity } from './product/product.entity';
 
-import { BrandModule } from './brand/brand.module';
-import { ProductModule } from './product/product.module';
 import { JwtModule } from '@nestjs/jwt';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { UploadModule } from './upload/upload.module';
-import { CategoryModule } from './category/category.module';
+import { AuthModule } from './auth/auth.module';
+import { BrandModule } from './brand/brand.module';
 import { CategoryEntity } from './category/category.entity';
+import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
+import { UploadModule } from './upload/upload.module';
+import { UsersEntity } from './users/users.entity';
+import { UsersModule } from './users/users.module';
+import { PermissionModule } from './permission/permission.module';
+import { RolesModule } from './roles/roles.module';
+import { PermissionEntity } from './permission/permission.entity';
+import { RolesEntity } from './roles/roles.entity';
 
 @Module({
   imports: [
@@ -23,18 +30,18 @@ import { CategoryEntity } from './category/category.entity';
       username: 'root',
       password: '123123',
       database: 'shop_store',
-      entities: [BrandEntity, ProductEntity, CategoryEntity],
+      entities: [BrandEntity, ProductEntity, CategoryEntity, UsersEntity, PermissionEntity, RolesEntity],
       synchronize: true,
       namingStrategy: new SnakeNamingStrategy(),
     }),
-    JwtModule.register({
-      secret: 'my-secret-key',
-      signOptions: { expiresIn: '1h' },
-    }),
+    AuthModule,
     BrandModule,
     CategoryModule,
     ProductModule,
     UploadModule,
+    UsersModule,
+    PermissionModule,
+    RolesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

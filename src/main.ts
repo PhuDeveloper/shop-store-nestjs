@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // app.useGlobalGuards(new RolesGuard());
   dotenv.config(); // Đọc biến môi trường từ tệp .env
   app.enableCors({
     credentials: true,

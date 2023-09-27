@@ -1,15 +1,19 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { BrandService } from './brand.service';
 import { CreateBrandDto } from './dto/create-brand.dto';
 import { GetDetailBrandDto } from './dto/get-detail-brand.dto';
 import { GetListBrandDto } from './dto/get-list-brand.dto';
 import { UpdateBrandDto } from './dto/update-brand.dto';
 import { BrandEntityResponseData, BrandListResponseData } from './type/response-brand';
-import { JwtService } from '@nestjs/jwt';
+
+import { AuthGuard } from '@/auth/auth.guard';
+import { PermissionList } from '@/auth/auth.decorator';
 
 @Controller({ path: 'brand' })
 export class BrandController {
-  constructor(private service: BrandService, private readonly jwtService: JwtService) {}
+  constructor(private service: BrandService) {}
+  @UseGuards(AuthGuard)
+  @PermissionList(['BRAND_SEARCH'])
   @Get('/list')
   async getListController(@Query() querySearch: GetListBrandDto): Promise<BrandListResponseData> {
     return await this.service.getListService(querySearch);
