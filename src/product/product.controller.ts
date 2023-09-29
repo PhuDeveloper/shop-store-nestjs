@@ -18,15 +18,15 @@ export class ProductController {
     return await this.service.createService(queryCreate);
   }
 
-  @UseGuards(AuthGuard)
-  @PermissionList(['PRODUCT_SEARCH'])
+  // @UseGuards(AuthGuard)
+  // @PermissionList(['PRODUCT_SEARCH'])
   @Get('/list')
   async getListController(@Query() querySearch: GetListProductDto): Promise<ProductListResponseData> {
     return await this.service.getListService(querySearch);
   }
 
-  @UseGuards(AuthGuard)
-  @PermissionList(['PRODUCT_GET'])
+  // @UseGuards(AuthGuard)
+  // @PermissionList(['PRODUCT_GET'])
   @Get('/:productId')
   async getDetailController(@Param() queryGetById: GetDetailProductDto) {
     return await this.service.getByIdService(queryGetById);

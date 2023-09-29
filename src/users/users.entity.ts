@@ -1,5 +1,6 @@
+import { OrdersEntity } from '@/orders/orders.entity';
 import { RolesEntity } from '@/roles/roles.entity';
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
 export class UsersEntity {
@@ -33,4 +34,7 @@ export class UsersEntity {
   @ManyToOne(() => RolesEntity, (role) => role.user)
   @JoinColumn()
   role: RolesEntity;
+
+  @OneToMany(() => OrdersEntity, (orders) => orders.user)
+  orders: OrdersEntity[];
 }

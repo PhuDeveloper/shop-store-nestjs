@@ -3,7 +3,7 @@ import { CategoryEntity } from '@/category/category.entity';
 import { ProductEntity } from '@/product/product.entity';
 
 export interface Product {
-  product_id: number;
+  id: number;
   product_name: string;
   product_status: number;
   product_price_org: number;

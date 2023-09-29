@@ -20,6 +20,13 @@ import { PermissionModule } from './permission/permission.module';
 import { RolesModule } from './roles/roles.module';
 import { PermissionEntity } from './permission/permission.entity';
 import { RolesEntity } from './roles/roles.entity';
+import { CartsModule } from './carts/carts.module';
+import { CartsEntity } from './carts/carts.entity';
+import { OrdersModule } from './orders/orders.module';
+import { OrdersEntity } from './orders/orders.entity';
+import { OrderItemService } from './order-item/order-item.service';
+import { OrderItemModule } from './order-item/order-item.module';
+import { OrderItemEntity } from './order-item/order-item.entity';
 
 @Module({
   imports: [
@@ -30,7 +37,17 @@ import { RolesEntity } from './roles/roles.entity';
       username: 'root',
       password: '123123',
       database: 'shop_store',
-      entities: [BrandEntity, ProductEntity, CategoryEntity, UsersEntity, PermissionEntity, RolesEntity],
+      entities: [
+        BrandEntity,
+        ProductEntity,
+        CategoryEntity,
+        UsersEntity,
+        PermissionEntity,
+        RolesEntity,
+        CartsEntity,
+        OrdersEntity,
+        OrderItemEntity,
+      ],
       synchronize: true,
       namingStrategy: new SnakeNamingStrategy(),
     }),
@@ -42,8 +59,11 @@ import { RolesEntity } from './roles/roles.entity';
     UsersModule,
     PermissionModule,
     RolesModule,
+    CartsModule,
+    OrdersModule,
+    OrderItemModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, OrderItemService],
 })
 export class AppModule {}
