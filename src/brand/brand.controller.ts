@@ -13,6 +13,7 @@ export class BrandController {
   // @PermissionList(['BRAND_SEARCH'])
   @Get('/list')
   async getListController(@Query() querySearch: GetListBrandDto): Promise<BrandListResponseData> {
+    console.log('vvvv', process.env.PASSWORD_DB);
     return await this.service.getListService(querySearch);
   }
 

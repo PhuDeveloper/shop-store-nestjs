@@ -1,4 +1,3 @@
-import { BrandListResponse } from '@/types/brand';
 import { StatusResponse } from '@/types/status';
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';

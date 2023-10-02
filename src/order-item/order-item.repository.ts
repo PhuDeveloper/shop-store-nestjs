@@ -1,8 +1,6 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { DataSource, Repository } from 'typeorm';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { DataSource, InsertResult, Repository } from 'typeorm';
 import { OrderItemEntity } from './order-item.entity';
-import { ApiResponse } from '@/types/response';
-import { StatusResponse } from '@/types/status';
 
 @Injectable()
 export class OrderItemRepository extends Repository<OrderItemEntity> {
@@ -10,24 +8,26 @@ export class OrderItemRepository extends Repository<OrderItemEntity> {
     super(OrderItemEntity, dataSource.createEntityManager());
   }
 
-  async createOrderItemRepository(data: OrderItemEntity): Promise<ApiResponse<OrderItemEntity>> {
+  async insertOrderItemRepository(data: OrderItemEntity[]): Promise<InsertResult> {
     try {
-      const orderItem = await this.save(data);
-
-      if (!orderItem) {
-        throw new HttpException('Create order item error', StatusResponse.SERVER_ERROR);
-      }
-
-      const response: ApiResponse<OrderItemEntity> = {
-        message: 'Success',
-        statusCode: HttpStatus.OK,
-        payload: {
-          ...orderItem,
-        },
-      };
-      return response;
+      const orderItem = await this.insert(data);
+      return orderItem;
     } catch (error) {
       throw error;
     }
+  }
+
+  async getListOrderItemByOrderId(orderId: number): Promise<OrderItemEntity[]> {
+    const query = this.createQueryBuilder('order-item');
+    if (orderId) {
+      query.andWhere('order-item.order_id = :orderId', { orderId });
+    }
+    const orderItem = await query.getMany();
+
+    if (!orderItem) {
+      throw new NotFoundException('OrderItem not found');
+    }
+
+    return orderItem;
   }
 }

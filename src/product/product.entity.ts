@@ -1,6 +1,7 @@
 import { BrandEntity } from '@/brand/brand.entity';
 import { CategoryEntity } from '@/category/category.entity';
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderItemEntity } from '@/order-item/order-item.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('products')
 export class ProductEntity {
@@ -50,4 +51,8 @@ export class ProductEntity {
 
   @Column({ type: 'varchar' })
   imageUrl: string;
+
+  @OneToMany(() => OrderItemEntity, (orderItem) => orderItem.product)
+  @JoinColumn()
+  orderItem: OrderItemEntity[];
 }

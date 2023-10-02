@@ -27,6 +27,7 @@ import { OrdersEntity } from './orders/orders.entity';
 import { OrderItemService } from './order-item/order-item.service';
 import { OrderItemModule } from './order-item/order-item.module';
 import { OrderItemEntity } from './order-item/order-item.entity';
+import { DeliveryAddressEntity } from './delivery-address/delivery-address.entity';
 
 @Module({
   imports: [
@@ -37,17 +38,7 @@ import { OrderItemEntity } from './order-item/order-item.entity';
       username: 'root',
       password: '123123',
       database: 'shop_store',
-      entities: [
-        BrandEntity,
-        ProductEntity,
-        CategoryEntity,
-        UsersEntity,
-        PermissionEntity,
-        RolesEntity,
-        CartsEntity,
-        OrdersEntity,
-        OrderItemEntity,
-      ],
+      entities: [__dirname + '/**/entities/*.entity{.ts,.js}'],
       synchronize: true,
       namingStrategy: new SnakeNamingStrategy(),
     }),

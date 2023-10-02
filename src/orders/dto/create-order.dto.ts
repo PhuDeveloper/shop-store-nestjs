@@ -8,9 +8,15 @@ export interface OrderItem {
   orderId: number;
 }
 
+// export interface DataProduct {
+
+// }
+
 export class CreateOrderDto {
   @IsNotEmpty()
   userId: number;
 
-  orderItem: OrderItem;
+  orderItem: OrderItem[];
+
+  // product :
 }

@@ -1,5 +1,4 @@
-import { RolesEntity } from '@/roles/roles.entity';
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('permission')
 export class PermissionEntity {

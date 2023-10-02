@@ -20,7 +20,11 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const payload = { email: user.payload.email, fullName: user.payload.fullName, role: user.payload.role.id };
+    const payload = {
+      email: user.payload.email,
+      fullName: user.payload.fullName,
+      role: user.payload.role.id,
+    };
 
     const token = await this.jwtService.signAsync(payload);
     const response: AuthTokenResponseData = {
@@ -28,6 +32,7 @@ export class AuthService {
       statusCode: HttpStatus.OK,
       payload: {
         accessToken: token,
+        roleName: user.payload.role.roleName,
       },
     };
     return response;

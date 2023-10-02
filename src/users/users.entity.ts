@@ -1,3 +1,4 @@
+import { DeliveryAddressEntity } from '@/delivery-address/delivery-address.entity';
 import { OrdersEntity } from '@/orders/orders.entity';
 import { RolesEntity } from '@/roles/roles.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -37,4 +38,7 @@ export class UsersEntity {
 
   @OneToMany(() => OrdersEntity, (orders) => orders.user)
   orders: OrdersEntity[];
+
+  @OneToMany(() => DeliveryAddressEntity, (deliveryAddress) => deliveryAddress.user)
+  deliveryAddress: DeliveryAddressEntity[];
 }

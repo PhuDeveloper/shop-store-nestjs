@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 
-import { BrandListResponse } from '@/types/brand';
 import { BrandEntity } from './brand.entity';
 import { BrandRepository } from './brand.repository';
 import { CreateBrandDto } from './dto/create-brand.dto';
@@ -37,8 +36,6 @@ export class BrandService {
 
   async updateService(queryUpdate: UpdateBrandDto): Promise<BrandEntityResponseData> {
     const timestamp = Math.round(Date.now() / 1000);
-
-    await this.brandRepository.getByIdRepository({ brandId: queryUpdate.brandId });
 
     queryUpdate.data.brandUpdated = timestamp;
 

@@ -1,11 +1,10 @@
+import { StatusResponse } from '@/types/status';
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
-import { ProductEntity } from './product.entity';
-import { StatusResponse } from '@/types/status';
-import { ProductListResponse } from '@/types/product';
-import { GetListProductDto } from './dto/get-list-product.dto';
 import { GetDetailProductDto } from './dto/get-detail-product.dto';
+import { GetListProductDto } from './dto/get-list-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { ProductEntity } from './product.entity';
 import { ProductEntityResponseData, ProductListResponseData } from './type/response-product';
 
 @Injectable()

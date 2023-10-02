@@ -41,10 +41,10 @@ export class AuthGuard implements CanActivate {
     const token = request.headers.token;
     return token;
   }
-  private hasPermission(permissionCode: string): boolean {
-    // Implement your authorization logic here
-    // You can check user roles or permissions and return true if the user has the required permission
-    // Otherwise, return false
-    return permissionCode.includes('admin'); // Example: Check if user has 'admin' role
-  }
+  // private hasPermission(permissionCode: string): boolean {
+  //   // Implement your authorization logic here
+  //   // You can check user roles or permissions and return true if the user has the required permission
+  //   // Otherwise, return false
+  //   return permissionCode.includes('admin'); // Example: Check if user has 'admin' role
+  // }
 }

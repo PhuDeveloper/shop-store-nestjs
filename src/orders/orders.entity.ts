@@ -1,3 +1,4 @@
+import { DeliveryAddressEntity } from '@/delivery-address/delivery-address.entity';
 import { OrderItemEntity } from '@/order-item/order-item.entity';
 import { UsersEntity } from '@/users/users.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -22,4 +23,7 @@ export class OrdersEntity {
 
   @Column({ type: 'int', comment: 'Trạng thái đơn hàng 1: Vừa tạo, 2: Đang giao, 3: Hoàn thành, 4: Hủy ', default: 1 })
   status: number;
+
+  @ManyToOne(() => DeliveryAddressEntity, (delivery) => delivery.order)
+  deliveryAddress: DeliveryAddressEntity;
 }

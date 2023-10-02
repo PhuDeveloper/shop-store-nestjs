@@ -7,18 +7,20 @@ import { OrderItemEntity } from './order-item.entity';
 export class OrderItemService {
   constructor(private orderItemRepository: OrderItemRepository) {}
 
-  async createOrderItemService(dataDto: OrderItemDto) {
-    const data = {
-      order: {
-        id: dataDto.orderId,
-      },
-      product: {
-        id: dataDto.productId,
-      },
-      quantity: dataDto.quantity,
-      currentProductPrice: dataDto.currentProductPrice,
-    } as OrderItemEntity;
+  async createOrderItemService(dataDto: OrderItemDto[]) {
+    const data = dataDto.map((item) => {
+      return {
+        quantity: item.quantity,
+        currentProductPrice: item.currentProductPrice,
+        order: {
+          id: item.orderId,
+        },
+        product: {
+          id: item.productId,
+        },
+      };
+    }) as OrderItemEntity[];
 
-    return await this.orderItemRepository.createOrderItemRepository(data);
+    return await this.orderItemRepository.insertOrderItemRepository(data);
   }
 }
