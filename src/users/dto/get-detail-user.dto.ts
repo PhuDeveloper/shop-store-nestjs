@@ -5,5 +5,5 @@ export class GetDetailUserDto {
   email?: string;
 
   @IsOptional()
-  id?: number;
+  userId?: number;
 }

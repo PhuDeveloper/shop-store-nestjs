@@ -13,9 +13,6 @@ export interface OrderItem {
 // }
 
 export class CreateOrderDto {
-  @IsNotEmpty()
-  userId: number;
-
   orderItem: OrderItem[];
 
   // product :

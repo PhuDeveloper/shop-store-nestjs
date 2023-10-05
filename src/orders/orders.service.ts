@@ -7,18 +7,33 @@ import { OrderItemEntity } from '@/order-item/order-item.entity';
 import { GetListOrderDto } from './dto/get-list-order.dto';
 import { GetDetailOrderDto } from './dto/get-detail-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class OrdersService {
-  constructor(private ordersRepository: OrdersRepository, private orderItemRepository: OrderItemRepository) {}
+  constructor(
+    private ordersRepository: OrdersRepository,
+    private orderItemRepository: OrderItemRepository,
+    private jwtService: JwtService,
+  ) {}
 
-  async createOrderService(dataDto: CreateOrderDto) {
+  async createOrderService(dataDto: CreateOrderDto, token: string) {
     const timestamp = Math.round(Date.now() / 1000);
+
+    const infoUser: {
+      email: string;
+      name: string;
+      role: number;
+      userId: number;
+    } = await this.jwtService.verifyAsync(token, {
+      secret: 'my-secret-key',
+    });
+
     const dataTmp = {
       created: timestamp,
       updated: timestamp,
       user: {
-        id: dataDto.userId,
+        id: infoUser.userId,
       },
     } as OrdersEntity;
 
@@ -49,7 +64,7 @@ export class OrdersService {
       created: timestamp,
       updated: timestamp,
       user: {
-        id: dataDto.userId,
+        id: infoUser.userId,
       },
       orderItem: listOrderItem,
       id: orderTmp.payload?.id,

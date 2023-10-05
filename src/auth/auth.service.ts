@@ -14,7 +14,7 @@ export class AuthService {
       email: querySignIn.email,
     };
 
-    const user = await this.usersService.getUserByEmailService(dataSignIn);
+    const user = await this.usersService.getUserByEmailOrIdService(dataSignIn);
 
     if (user.payload?.password !== querySignIn.password) {
       throw new UnauthorizedException();
@@ -24,6 +24,7 @@ export class AuthService {
       email: user.payload.email,
       fullName: user.payload.fullName,
       role: user.payload.role.id,
+      userId: user.payload.id,
     };
 
     const token = await this.jwtService.signAsync(payload);
@@ -33,6 +34,7 @@ export class AuthService {
       payload: {
         accessToken: token,
         roleName: user.payload.role.roleName,
+        userId: user.payload.id,
       },
     };
     return response;

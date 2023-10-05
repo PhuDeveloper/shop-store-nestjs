@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Headers, Param, Post, Query } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { GetListOrderDto } from './dto/get-list-order.dto';
@@ -10,8 +10,10 @@ export class OrdersController {
   constructor(private service: OrdersService) {}
 
   @Post('/create')
-  async createOrderController(@Body() data: CreateOrderDto) {
-    return await this.service.createOrderService(data);
+  async createOrderController(@Body() data: CreateOrderDto, @Headers() header) {
+    const token = header.token;
+
+    return await this.service.createOrderService(data, token);
   }
 
   @Post('/update')
