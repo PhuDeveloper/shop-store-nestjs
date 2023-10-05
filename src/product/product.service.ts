@@ -20,7 +20,7 @@ export class ProductService {
     const brand = await this.brandRepository.getByIdRepository({ brandId: brandId });
 
     if (!brand) {
-      throw new HttpException('Brand not found ', HttpStatus.NOT_FOUND);
+      throw new HttpException('Thương hiệu không tồn tại ', HttpStatus.NOT_FOUND);
     }
 
     const data = {

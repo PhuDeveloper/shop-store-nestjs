@@ -22,7 +22,7 @@ export class RolesRepository extends Repository<RolesEntity> {
     const role = await query.leftJoinAndSelect('roles.permission', 'permission').getOne();
 
     if (!role) {
-      throw new NotFoundException('Role not found');
+      throw new NotFoundException('Role không tồn tại');
     }
 
     const response: ApiResponse<RolesEntity> = {

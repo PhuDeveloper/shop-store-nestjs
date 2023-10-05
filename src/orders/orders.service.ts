@@ -40,7 +40,7 @@ export class OrdersService {
     const orderTmp = await this.ordersRepository.createOrderRepository(dataTmp);
 
     if (!orderTmp.payload?.id) {
-      throw new NotFoundException('Order not found');
+      throw new NotFoundException('Đơn hàng không tồn tại');
     }
 
     const dataOrderItemEntity = dataDto.orderItem.map((item) => {

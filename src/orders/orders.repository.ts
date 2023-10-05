@@ -50,7 +50,7 @@ export class OrdersRepository extends Repository<OrdersEntity> {
 
     const order = await query.getOne();
     if (!order) {
-      throw new NotFoundException('Order not found');
+      throw new NotFoundException('Đơn hàng không tồn tại');
     }
     const response: ApiResponse<OrdersEntity> = {
       message: 'Success',

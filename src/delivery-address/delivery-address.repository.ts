@@ -46,7 +46,7 @@ export class DeliveryAddressRepository extends Repository<DeliveryAddressEntity>
       const delivery = await query.getOne();
 
       if (!delivery) {
-        throw new NotFoundException('Delivery not found');
+        throw new NotFoundException('Địa chỉ không tồn tại');
       }
 
       const response: ApiResponse<DeliveryAddressEntity> = {

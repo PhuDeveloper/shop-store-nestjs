@@ -29,7 +29,7 @@ export class UsersRepository extends Repository<UsersEntity> {
       const user = await query.leftJoinAndSelect('users.role', 'role').getOne();
 
       if (!user) {
-        throw new NotFoundException('User not found');
+        throw new NotFoundException('Người dùng không tồn tại');
       }
 
       const response: UsersEntityResponseData = {

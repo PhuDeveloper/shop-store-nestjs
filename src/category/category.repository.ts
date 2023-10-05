@@ -64,7 +64,7 @@ export class CategoryRepository extends Repository<CategoryEntity> {
       const category = await query.getOne();
 
       if (!category) {
-        throw new NotFoundException('Category not found');
+        throw new NotFoundException('Danh mục không tồ tại');
       }
 
       const response: CategoryEntityResponseData = {

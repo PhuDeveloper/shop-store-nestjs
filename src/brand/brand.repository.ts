@@ -67,7 +67,7 @@ export class BrandRepository extends Repository<BrandEntity> {
       const brand = await query.getOne();
 
       if (!brand) {
-        throw new NotFoundException('Brand not found');
+        throw new NotFoundException('Thương hiệu không tồn tại');
       }
 
       const response: BrandEntityResponseData = {

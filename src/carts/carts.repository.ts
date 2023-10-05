@@ -53,7 +53,7 @@ export class CartsRepository extends Repository<CartsEntity> {
       .getOne();
 
     if (!cart) {
-      throw new NotFoundException('Cart not found');
+      throw new NotFoundException('Giỏ hàng không tồn tại');
     }
 
     const response: CartEntityResponseData = {

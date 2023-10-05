@@ -25,7 +25,7 @@ export class OrderItemRepository extends Repository<OrderItemEntity> {
     const orderItem = await query.getMany();
 
     if (!orderItem) {
-      throw new NotFoundException('OrderItem not found');
+      throw new NotFoundException('OrderItem không tồn tại');
     }
 
     return orderItem;

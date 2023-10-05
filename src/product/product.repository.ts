@@ -130,7 +130,7 @@ export class ProductRepository extends Repository<ProductEntity> {
       const product = await query.getOne();
 
       if (!product) {
-        throw new NotFoundException('Product not found');
+        throw new NotFoundException('Sản phẩm không tồn tại');
       }
 
       const response: ProductEntityResponseData = {
