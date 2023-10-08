@@ -18,6 +18,9 @@ export class OrdersEntity {
   @Column({ type: 'int', comment: 'Thời gian tạo' })
   created: number;
 
+  @Column({ type: 'varchar', comment: 'Mã đơn hàng' })
+  orderCode: string;
+
   @Column({ type: 'int', comment: 'Thời gian cập nhật' })
   updated: number;
 

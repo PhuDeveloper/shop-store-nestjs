@@ -63,6 +63,7 @@ export class OrdersService {
     const data = {
       created: timestamp,
       updated: timestamp,
+      orderCode: `DH ${timestamp}`,
       user: {
         id: infoUser.userId,
       },
