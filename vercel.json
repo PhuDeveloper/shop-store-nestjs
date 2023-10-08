@@ -8,9 +8,16 @@
   ],
   "routes": [
     {
+      "src": "/api/brand/(.*)",
+      "dest": "/src/brand/$1"
+    },
+    {
+      "src": "/api/product/(.*)",
+      "dest": "/src/product/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "dist/main.js",
-      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+      "dest": "/$1"
     }
   ]
 }
